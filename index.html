@@ -17,6 +17,8 @@
   <div id="clock"></div>
   <div id="app"></div>
   <div id="click"></div>
+  <div id="root"></div>
+  <div id="form"></div>
   <script type="text/babel">
     // 自动更新的时钟显示
     class Clock extends React.Component {
@@ -69,6 +71,7 @@
       <App />,
       document.getElementById('app')
     )
+    // jsx的this指向
     class ActionLink extends React.Component {
       handleClick(e) {
         console.log(this)
@@ -90,6 +93,90 @@
     ReactDOM.render(
       <ActionLink />,
       document.getElementById('click')
+    )
+    // 条件渲染
+    function LoginButton(props) {
+      return (
+        <button onClick={props.onClick}>
+          Login
+        </button>
+      );
+    }
+
+    function LogoutButton(props) {
+      return (
+        <button onClick={props.onClick}>
+          Logout
+        </button>
+      );
+    }
+    class LoginControl extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {isLoggedIn: false};
+      }
+
+      handleLoginClick() {
+        this.setState({isLoggedIn: true});
+      }
+
+      handleLogoutClick() {
+        this.setState({isLoggedIn: false});
+      }
+
+      render() {
+        const isLoggedIn = this.state.isLoggedIn;
+
+        let button = null;
+        if (isLoggedIn) {
+          button = <LogoutButton onClick={ (e) => { this.handleLogoutClick() }} />;
+        } else {
+          button = <LoginButton onClick={ (e) => { this.handleLoginClick() }} />;
+        }
+
+        return (
+          <div>
+            { button }
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(
+      <LoginControl />,
+      document.getElementById('root')
+    );
+    // 表单
+    class NameForm extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {value: ''};
+      }
+
+      handleChange(event) {
+        this.setState({value: event.target.value});
+      }
+
+      handleSubmit(event) {
+        console.log('A name was submitted: ' + this.state.value);
+        event.preventDefault();
+      }
+
+      render() {
+        return (
+          <form onSubmit={ (e) => { this.handleSubmit(e) }}>
+            <label>
+              Name:
+              <input type="text" value={this.state.value} onChange={(e) => { this.handleChange(e) }} />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+        );
+      }
+    }
+    ReactDOM.render(
+      <NameForm />,
+      document.getElementById('form')
     )
   </script>
 
