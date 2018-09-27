@@ -75,8 +75,13 @@
         e.preventDefault();
       }
       render() {
+          /* 无需bind(this)有两种方案  
+            1.箭头函数
+            2.回调
+            详见 https://reactjs.org/docs/handling-events.html
+          */
         return (
-          <a href="#" onClick={ this.handleClick.bind(this) }>
+          <a href="#" onClick={ (e) => this.handleClick(e) }>
             Click me
           </a>
         );
