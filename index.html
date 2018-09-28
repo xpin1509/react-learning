@@ -19,6 +19,7 @@
   <div id="click"></div>
   <div id="root"></div>
   <div id="form"></div>
+  <div id="calculator"></div>
   <script type="text/babel">
     // 自动更新的时钟显示
     class Clock extends React.Component {
@@ -177,6 +178,73 @@
     ReactDOM.render(
       <NameForm />,
       document.getElementById('form')
+    )
+    // 状态提升
+    function BoilingVerdict(props) {
+      if (props.celsius >= 100) {
+        return <p>水会烧开</p>;
+      }
+      return <p>水不会烧开</p>;
+    }
+    function toCelsius(fahrenheit) {
+      return (fahrenheit - 32) * 5 / 9;
+    }
+    function toFahrenheit(celsius) {
+      return (celsius * 9 / 5) + 32;
+    }
+    function tryConvert(temperature, convert) {
+      const input = parseFloat(temperature);
+      if (Number.isNaN(input)) {
+        return '';
+      }
+      const output = convert(input);
+      const rounded = Math.round(output * 1000) / 1000;
+      return rounded.toString();
+    }
+    class TemperatureInput extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {temperature: ''};
+      }
+
+      handleChange(e) {
+        this.setState({temperature: e.target.value});
+      }
+
+      render() {
+        // const temperature = this.state.temperature;
+        const temperature = this.props.temperature;
+        return (
+          <div>
+            <input value={temperature} onChange={ (e) => {this.handleChange(e)}} />°{this.props.scale}
+          </div>
+        )
+      }
+    }
+    class Calculator extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {temperature: ''};
+      }
+
+      handleChange(e) {
+        this.setState({temperature: e.target.value});
+      }
+
+      render() {
+        const temperature = this.state.temperature;
+        return (
+          <div>
+            <TemperatureInput scale="c" />
+            <TemperatureInput scale="f" />
+            <BoilingVerdict celsius={parseFloat(temperature)} />
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(
+      <Calculator />,
+      document.getElementById('calculator')
     )
   </script>
 
