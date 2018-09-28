@@ -208,7 +208,8 @@
       }
 
       handleChange(e) {
-        this.setState({temperature: e.target.value});
+        // this.setState({temperature: e.target.value});
+        this.props.onTemperatureChange(e.target.value)
       }
 
       render() {
@@ -227,16 +228,16 @@
         this.state = {temperature: ''};
       }
 
-      handleChange(e) {
-        this.setState({temperature: e.target.value});
+      handleChange(val) {
+        this.setState({temperature: val});
       }
 
       render() {
         const temperature = this.state.temperature;
         return (
           <div>
-            <TemperatureInput scale="c" />
-            <TemperatureInput scale="f" />
+            <TemperatureInput scale="c" temperature={temperature} onTemperatureChange={ (val) => { this.handleChange(val) }}/>
+            <TemperatureInput scale="f" temperature={temperature} onTemperatureChange={ (val) => { this.handleChange(val) }}/>
             <BoilingVerdict celsius={parseFloat(temperature)} />
           </div>
         )
