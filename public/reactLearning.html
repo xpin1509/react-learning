@@ -20,7 +20,7 @@
   <div id="calculator"></div>
   <div id="groupAndExtend"></div>
   <script type="text/babel">
-    // 自动更新的时钟显示
+    // 1.自动更新的时钟显示
     class Clock extends React.Component {
         constructor(props) {
             super(props)
@@ -54,7 +54,7 @@
         <Clock />,
         document.getElementById('clock')
     )
-    // clock 组件集合
+    // 2.clock 组件集合
     class App extends React.Component {
         render() {
             return (
@@ -71,7 +71,7 @@
         <App />,
         document.getElementById('app')
     )
-    // jsx的this指向
+    // 3.jsx的this指向
     class ActionLink extends React.Component {
         handleClick(e) {
             console.log(this)
@@ -274,7 +274,6 @@
         document.getElementById('groupAndExtend')
     )
   </script>
-  <script src="es6"></script>
 </body>
 
 </html>
