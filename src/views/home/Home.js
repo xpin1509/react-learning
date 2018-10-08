@@ -1,57 +1,49 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import { Input } from 'antd';
+import fetch from '../../fetch';
+import md5 from 'md5'
 import './home.css';
 
-const { Header, Sider, Content } = Layout;
+const Search = Input.Search;
+// 快递查询链接
+const BASEURL = 'https://poll.kuaidi100.com/poll/query.do';
+const KEY = 'ilItbswV4700'
+const CUSTOMER = '89B83402BF4C0EAE31CB157CBC2B6958'
 
 class Home extends Component{
-    state = {
-        collapsed: false,
-    };
-    
-    toggle = () => {
-        this.setState({
-            collapsed: !this.state.collapsed,
-        });
+    searchAction(value) {
+        // 校验
+        fetch(value)
+    }
+    fetch(value) {
+        const params = {
+            customer: KEY,
+            param: {
+                com: 'yuantong',
+                num: value,
+                from: '',
+                to: '',
+                resultv2: ''
+            }
+        }
+        params.sign = md5(JSON.stringify(params.param) + KEY + CUSTOMER)
+        fetch.post( BASEURL, params).then(function (response) {
+            console.log(response);
+          }).catch(function (error) {
+            console.log(error);
+          });
     }
     
     render() {
         return (
-            <Layout>
-                <Sider
-                trigger={null}
-                collapsible
-                collapsed={this.state.collapsed}
-                >
-                <div className="logo" />
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                    <Menu.Item key="1">
-                    <Icon type="user" />
-                    <span>nav 1</span>
-                    </Menu.Item>
-                    <Menu.Item key="2">
-                    <Icon type="video-camera" />
-                    <span>nav 2</span>
-                    </Menu.Item>
-                    <Menu.Item key="3">
-                    <Icon type="upload" />
-                    <span>nav 3</span>
-                    </Menu.Item>
-                </Menu>
-                </Sider>
-                <Layout>
-                <Header style={{ background: '#fff', padding: 0 }}>
-                    <Icon
-                    className="trigger"
-                    type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                    onClick={this.toggle}
+            <div className="homePage">
+                <Search
+                    placeholder="输入快递单号"
+                    enterButton="查询"
+                    size="large"
+                    onSearch={ this.searchAction }
                     />
-                </Header>
-                <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
-                    Content
-                </Content>
-                </Layout>
-            </Layout>
+            </div>
           )
     }
 }

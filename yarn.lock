@@ -1475,6 +1475,14 @@ aws4@^1.8.0:
   resolved "http://registry.npm.taobao.org/aws4/download/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
   integrity sha1-8OAD2cqef1nHpQiUXXsu+aBKVC8=
 
+axios@^0.18.0:
+  version "0.18.0"
+  resolved "http://registry.npm.taobao.org/axios/download/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
+  integrity sha1-MtU+SFHv3AoRmTts0AB4nXDAUQI=
+  dependencies:
+    follow-redirects "^1.3.0"
+    is-buffer "^1.1.5"
+
 axobject-query@^2.0.1:
   version "2.0.1"
   resolved "http://registry.npm.taobao.org/axobject-query/download/axobject-query-2.0.1.tgz#05dfa705ada8ad9db993fa6896f22d395b0b0a07"
@@ -2167,6 +2175,11 @@ chardet@^0.7.0:
   resolved "http://registry.npm.taobao.org/chardet/download/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha1-kAlISfCTfy7twkJdDSip5fDLrZ4=
 
+charenc@~0.0.1:
+  version "0.0.2"
+  resolved "http://registry.npm.taobao.org/charenc/download/charenc-0.0.2.tgz#c0a1d2f3a7092e03774bfa83f14c0fc5790a8667"
+  integrity sha1-wKHS86cJLgN3S/qD8UwPxXkKhmc=
+
 check-types@^7.3.0:
   version "7.4.0"
   resolved "http://registry.npm.taobao.org/check-types/download/check-types-7.4.0.tgz#0378ec1b9616ec71f774931a3c6516fad8c152f4"
@@ -2617,6 +2630,11 @@ cross-spawn@^5.0.1:
     lru-cache "^4.0.1"
     shebang-command "^1.2.0"
     which "^1.2.9"
+
+crypt@~0.0.1:
+  version "0.0.2"
+  resolved "http://registry.npm.taobao.org/crypt/download/crypt-0.0.2.tgz#88d7ff7ec0dfb86f713dc87bbb42d044d3e6c41b"
+  integrity sha1-iNf/fsDfuG9xPch7u0LQRNPmxBs=
 
 crypto-browserify@^3.11.0:
   version "3.12.0"
@@ -3991,7 +4009,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.1"
     readable-stream "^2.0.4"
 
-follow-redirects@^1.0.0:
+follow-redirects@^1.0.0, follow-redirects@^1.3.0:
   version "1.5.8"
   resolved "http://registry.npm.taobao.org/follow-redirects/download/follow-redirects-1.5.8.tgz#1dbfe13e45ad969f813e86c00e5296f525c885a1"
   integrity sha1-Hb/hPkWtlp+BPobADlKW9SXIhaE=
@@ -4860,7 +4878,7 @@ is-binary-path@^1.0.0:
   dependencies:
     binary-extensions "^1.0.0"
 
-is-buffer@^1.0.2, is-buffer@^1.1.5:
+is-buffer@^1.0.2, is-buffer@^1.1.5, is-buffer@~1.1.1:
   version "1.1.6"
   resolved "http://registry.npm.taobao.org/is-buffer/download/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
   integrity sha1-76ouqdqg16suoTqXsritUf776L4=
@@ -6095,6 +6113,15 @@ md5.js@^1.3.4:
     hash-base "^3.0.0"
     inherits "^2.0.1"
     safe-buffer "^5.1.2"
+
+md5@^2.2.1:
+  version "2.2.1"
+  resolved "http://registry.npm.taobao.org/md5/download/md5-2.2.1.tgz#53ab38d5fe3c8891ba465329ea23fac0540126f9"
+  integrity sha1-U6s41f48iJG6RlMp6iP6wFQBJvk=
+  dependencies:
+    charenc "~0.0.1"
+    crypt "~0.0.1"
+    is-buffer "~1.1.1"
 
 mdn-data@~1.1.0:
   version "1.1.4"
