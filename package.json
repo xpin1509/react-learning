@@ -108,5 +108,6 @@
     "presets": [
       "react-app"
     ]
-  }
+  },
+  "proxy": "https://poll.kuaidi100.com"
 }
