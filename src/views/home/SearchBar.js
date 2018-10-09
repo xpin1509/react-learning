@@ -7,6 +7,17 @@ import { APICONFIG } from "../../static/config";
 
 const Search = Input.Search;
 const Option = Select.Option;
+/**
+ * js对象序列化
+ * @param {Object} obj 
+ */
+const objSerialize = function (obj) {
+  const arr = []
+  for (const i in obj) {
+    arr.push(`${i}=${typeof obj[i] === 'object' ? JSON.stringify(obj[i]) : obj[i]}`)
+  }
+  return arr.join('&')
+}
 
 class SearchBar extends Component {
   constructor(props) {
@@ -16,19 +27,24 @@ class SearchBar extends Component {
   handleChange(value) {
     this.com = value
   }
+  searchAction(value) {
+    // 校验
+    this.doFetch(value)
+  }
   doFetch(value) {
-    const params = {
-      customer: APICONFIG.key,
+    const paramObj = {
+      customer: APICONFIG.customer,
       param: {
         com: this.com,
         num: value,
         from: '',
         to: '',
-        resultv2: ''
+        resultv2: 0
       }
     }
-    params.sign = md5(JSON.stringify(params.param) + APICONFIG.key + APICONFIG.customer)
-    fetch.post(APICONFIG.baseurl, params).then(function (response) {
+    paramObj.sign = md5(JSON.stringify(paramObj.param) + APICONFIG.key + APICONFIG.customer).toLocaleUpperCase()
+
+    fetch.post(APICONFIG.baseurl, objSerialize(paramObj)).then(function (response) {
       if (response.data && response.data.state === '0') {
         console.log(response.data)
         // this.props.changeData(params)
@@ -38,10 +54,6 @@ class SearchBar extends Component {
     }).catch(function (error) {
       console.log(error);
     });
-  }
-  searchAction(value) {
-    // 校验
-    this.doFetch(value)
   }
   render() {
     const optionList = CARRIERLIST.map((el, index) => {

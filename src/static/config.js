@@ -7,8 +7,8 @@ export const APICONFIG = {
 // 快递列表
 export const CARRIERLIST = [
     {
-        key: 'zhongtong',
-        name: '中通'
+        key: 'shentong',
+        name: '申通'
     },
     {
         key: 'yuantong',
@@ -23,12 +23,12 @@ export const CARRIERLIST = [
         name: '韵达'
     },
     {
-        key: 'tiantian',
-        name: '天天'
+        key: 'zhongtong',
+        name: '中通'
     },
     {
-        key: 'jingdong',
-        name: '京东'
+        key: 'tiantian',
+        name: '天天'
     },
     {
         key: 'baishihuitong',
