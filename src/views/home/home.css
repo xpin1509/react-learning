@@ -1,4 +1,15 @@
 .homePage{
   width: 600px;
-  margin:200px auto;
+  margin: 0 auto;
+  padding-top: 200px 
+}
+.homeTitle{
+  margin-bottom: 20px;
+  text-align: center;
+}
+.timeLine{
+  padding-left: 78px;
+  margin-top: 20px;
+  height: 400px;
+  overflow: auto;
 }

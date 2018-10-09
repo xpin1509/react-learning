@@ -1,94 +1,43 @@
 import React, { Component } from 'react';
-import { Input, Select, message } from 'antd';
-import fetch from '../../fetch';
-import md5 from 'md5'
+import SearchBar from './SearchBar.js';
+import TimeLine from './TimeLine.js';
 import './home.css';
 
-const Search = Input.Search;
-const Option = Select.Option;
-const dataList = [
-    {
-        key: 'zhongtong', 
-        name: '中通'
-    },
-    {
-        key: 'yuantong', 
-        name: '圆通'
-    },
-    {
-        key: 'shunfeng', 
-        name: '顺丰'
-    },
-    {
-        key: 'yunda', 
-        name: '韵达'
-    },
-    {
-        key: 'tiantian', 
-        name: '天天'
-    },
-    {
-        key: 'jingdong', 
-        name: '京东'
-    },
-    {
-        key: 'baishihuitong', 
-        name: '百世汇通'
-    }
-]
-const optionList = dataList.map((el, index) => {   
-    return (<Option value={ el.key } key={ index }>{ el.name }</Option>)
-})
-const selectBefore = (
-    <Select defaultValue={ dataList[0].key } style={{ width: 80 }}> 
-        { optionList }
-    </Select>
-  );
-// 快递查询链接
-const BASEURL = '/poll/query.do';
-const KEY = 'ilItbswV4700'
-const CUSTOMER = '89B83402BF4C0EAE31CB157CBC2B6958'
-
 class Home extends Component{
-    doFetch(value) {
-        const params = {
-            customer: KEY,
-            param: {
-                com: 'yuantong',
-                num: value,
-                from: '',
-                to: '',
-                resultv2: ''
-            }
+    constructor(props) {
+        super(props)
+        this.state = {
+            showList: false,
+            timeList: [{
+                status: 1,
+                state: 'Create a services site 2015-09-01'
+            },
+            {
+                status: 1,
+                state: 'Create a services site 2015-09-01'
+            },
+            {
+                status: 1,
+                state: 'Solve initial network problems 1'
+            },
+            {
+                status: 0,
+                state: 'success'
+            }]
         }
-        params.sign = md5(JSON.stringify(params.param) + KEY + CUSTOMER)
-        fetch.post( BASEURL, params).then(function (response) {
-            if (response.data && response.data.state === '0') {
-                console.log(response.data)
-            } else {
-                message.error(response.data.message)
-            }
-          }).catch(function (error) {
-            console.log(error);
-          });
     }
-    searchAction(value) {
-        // 校验
-        this.doFetch(value)
+    changeData(value) {
+        console.log(value)
     }
-    
     render() {
+        const timeLine = this.state.showList ? <TimeLine data={this.state.timeList}/> : ''
         return (
             <div className="homePage">
-                <Search
-                    addonBefore={selectBefore}
-                    placeholder="输入快递单号"
-                    enterButton="查询"
-                    size="large"
-                    onSearch={ this.searchAction.bind(this) }
-                    />
+                <h3 className="homeTitle">快递单号查询</h3>
+                <SearchBar changeData={ this.changeData.bind(this) }/>
+                { timeLine }
             </div>
-          )
+        )
     }
 }
 export default Home
