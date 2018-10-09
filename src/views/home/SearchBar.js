@@ -14,7 +14,7 @@ const Option = Select.Option;
 const objSerialize = function (obj) {
   const arr = []
   for (const i in obj) {
-    arr.push(`${i}=${typeof obj[i] === 'object' ? JSON.stringify(obj[i]) : obj[i]}`)
+    arr.push(`${i}=${typeof obj[i] != 'string' ? JSON.stringify(obj[i]) : obj[i]}`)
   }
   return arr.join('&')
 }

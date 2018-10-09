@@ -7,7 +7,7 @@ class Home extends Component{
     constructor(props) {
         super(props)
         this.state = {
-            showList: false,
+            showList: true,
             timeList: [{
                 status: 1,
                 state: 'Create a services site 2015-09-01'
