@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 // import Home from './views/home/Home';
 // import Practice from './views/practice/Index';
-import Reducer from './views/redux/Index'
+import ReduxDemo from './views/redux/index'
 
 class App extends Component {
   render() {
     return (
       // <Home />
       // <Practice />
-      <Reducer />
+      <ReduxDemo />
     );
   }
 }
