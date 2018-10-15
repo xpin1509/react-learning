@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import AddTodo from './containers/AddTodo';
+import VisibleTodoList from './containers/VisibleTodoList';
 import Footer from './Footer';
-import VisibleTodoList from './containers/VisibleTodoList'
-import AddTodo from './containers/AddTodo'
 
 class Todo extends Component {
     render() {
