@@ -1,20 +1,21 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const Link = ({ active, children, onClick }) => {
-  if (active) {
-    return <span>{children}</span>
+class Link extends Component {
+  render() {
+    if(this.props.active) {
+      return <span>{ this.props.children }</span>
+    }
+    return (
+      <span
+        onClick={e => {
+          e.preventDefault()
+          this.props.onClick()
+        }}
+      >
+        {this.props.children}
+      </span>
+    )
   }
-
-  return (
-    <span
-      onClick={e => {
-        e.preventDefault()
-        onClick()
-      }}
-    >
-      {children}
-    </span>
-  )
 }
 
 export default Link

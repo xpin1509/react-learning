@@ -9,7 +9,7 @@ import './index.css';
 const store =  createStore(counter)
 
 ReactDOM.render(
-    <Provider store={store}>
+    <Provider store={ store }>
         <App />
     </Provider>
     ,
